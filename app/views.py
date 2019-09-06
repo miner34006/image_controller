@@ -47,7 +47,8 @@ def save_image():
 def get_image(image_tag, image_id):
     """ Get image url using image tag and id
     """
-    url = 'http://{0}/images/{1}/{2}'.format(HOSTNAME, image_tag, image_id)
+    hash_object = hashlib.sha256(str(image_id).encode('utf-8')).hexdigest()
+    url = 'http://{0}/images/{1}/{2}'.format(HOSTNAME, image_tag, hash_object)
     return jsonify({'url': url}), 200
 
 
